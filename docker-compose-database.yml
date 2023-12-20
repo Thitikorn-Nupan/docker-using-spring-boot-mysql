@@ -1,0 +1,30 @@
+version: '3'
+services:
+  database:
+    container_name: mysql # define container name
+    restart: always # I ask docker-compose.yml to always restart this container if it fails.
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=${SQLD_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${SQLD_ROOT_PASSWORD}
+      - MYSQL_USER=${SQLD_USERNAME}
+      - MYSQL_PASSWORD=${SQLD_PASSWORD}
+    ports:
+      - '${SQLD_EXPOSED_PORT}:3306'
+    volumes:
+      # second way use with your volume for storing data (use volume name instead folder name)
+      - information-database:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      springboot-network:
+volumes: # for storing value on container (can call service in backend part)
+  # like volumes:
+  #      - information-database:/var/lib/mysql
+  information-database: # define volume name
+    driver: local # use only current pc
+
+
+networks: # It's Importance. Create a docker network to communicate Spring boot application and MySQL database
+  # Here springboot-mysql-net is the network name.
+  springboot-network:
