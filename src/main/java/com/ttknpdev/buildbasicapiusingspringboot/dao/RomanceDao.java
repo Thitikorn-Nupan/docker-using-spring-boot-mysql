@@ -46,7 +46,7 @@ public class RomanceDao implements BooksService<Romance> {
             romance.setPrice(obj.getPrice());
             return repository.save(romance);
         }).orElseThrow(() -> {
-            // response.put("deleted",null);
+            // *** response.put("deleted",null);
             myLog.log4j.info("RID : "+rid+" exits!!");
             return new RuntimeException(("RID : "+rid+" exits!!"));
         });

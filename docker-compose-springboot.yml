@@ -14,7 +14,7 @@ services:
     links: # to link containers over a network. When we link containers, Docker creates environment variables and adds containers to the known hosts list
       - db # call service db name on docker-compose main (That I extend) now I can't use service name database
     environment: # environmental variables that Spring Boot application uses
-      - spring.datasource.url=jdbc:mysql://$PMA_HOST_DATABASE:3306/$SQLD_DATABASE?allowPublicKeyRetrieval=true
+      - spring.datasource.url=jdbc:mysql://db:3306/$SQLD_DATABASE?allowPublicKeyRetrieval=true
     networks:
       - springboot-network
     stdin_open: true # stdin_open and tty: keep open the terminal after building container

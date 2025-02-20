@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/ttknp")
+@RequestMapping(value = "/api")
 public class ControlApi {
     private BooksService<Romance> romanceBooksService;
     private MyLog myLog;
+
     @Autowired
     public ControlApi(BooksService<Romance> romanceBooksService) {
         this.romanceBooksService = romanceBooksService;
@@ -52,6 +53,7 @@ public class ControlApi {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(romanceBooksService.update(romance,rid));
     }
+
     @DeleteMapping(value = "/romance/delete/{rid}")
     private ResponseEntity<Map<String,Romance>> deleteRomance(@PathVariable String rid) {
         myLog.log4j.info("requested localhost:8080/ttknp/romance/delete/{rid}");
