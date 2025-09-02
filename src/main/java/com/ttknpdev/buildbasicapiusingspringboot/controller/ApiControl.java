@@ -7,19 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api")
-public class ControlApi {
-    private BooksService<Romance> romanceBooksService;
-    private MyLog myLog;
+public class ApiControl {
+
+    private final BooksService<Romance> romanceBooksService;
+    private final MyLog myLog;
 
     @Autowired
-    public ControlApi(BooksService<Romance> romanceBooksService) {
+    public ApiControl(BooksService<Romance> romanceBooksService) {
         this.romanceBooksService = romanceBooksService;
-        myLog = new MyLog(ControlApi.class);
+        myLog = new MyLog(ApiControl.class);
     }
 
     @GetMapping
@@ -33,6 +33,7 @@ public class ControlApi {
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(romanceBooksService.reads());
     }
+
     @GetMapping(value = "/romance/read/{rid}")
     private ResponseEntity<Romance> readRomance(@PathVariable String rid) {
         myLog.log4j.info("requested localhost:8080/ttknp/romance/read/{rid}");

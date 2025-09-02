@@ -1,9 +1,6 @@
 version: '3'
-# I can build by command docker-compose up -d --build (it will call any compose that I extend)
-# but , I have to put volumes
-# for next step command. Service name it will be change
-services:
-  app:
+services: # you can build by command docker-compose up -d --build (it will call any compose that I extend)
+  api:
     extends:
       file: docker-compose-springboot.yml
       service: backend
@@ -13,11 +10,11 @@ services:
       file: docker-compose-database.yml
       service: database
 
+# if you work with extends service you have to set volumes,networks again
 # setting volume and network again when Service that extend sets it
 volumes: # for storing value on container (can call service in backend part)
   information-database: # define volume name
     driver: local # use only current pc1
 
 networks: # It's Importance. Create a docker network to communicate Spring boot application and MySQL database
-  # Here springboot-mysql-net is the network name.
-  springboot-network:
+  springboot-network:  # Here springboot-mysql-net is the network name.

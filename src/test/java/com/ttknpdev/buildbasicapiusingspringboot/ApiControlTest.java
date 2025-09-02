@@ -1,6 +1,6 @@
 package com.ttknpdev.buildbasicapiusingspringboot;
 
-import com.ttknpdev.buildbasicapiusingspringboot.controller.ControlApi;
+import com.ttknpdev.buildbasicapiusingspringboot.controller.ApiControl;
 import com.ttknpdev.buildbasicapiusingspringboot.entity.Romance;
 import com.ttknpdev.buildbasicapiusingspringboot.service.BooksService;
 import org.junit.jupiter.api.Test;
@@ -11,14 +11,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 import java.util.List;
-
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(controllers = ControlApi.class)
-public class ControlApiTest {
+@WebMvcTest(controllers = ApiControl.class)
+public class ApiControlTest {
 
     // *** using MockMvc class to make REST API calls.
     @Autowired

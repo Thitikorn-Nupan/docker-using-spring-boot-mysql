@@ -6,13 +6,15 @@ import com.ttknpdev.buildbasicapiusingspringboot.repository.RomanceRepository;
 import com.ttknpdev.buildbasicapiusingspringboot.service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.Map;
+
 @Service
 public class RomanceDao implements BooksService<Romance> {
-    private RomanceRepository repository;
-    private MyLog myLog;
+
+    private final RomanceRepository repository;
+    private final MyLog myLog;
+
     @Autowired
     public RomanceDao(RomanceRepository repository) {
         this.repository = repository;
@@ -29,9 +31,7 @@ public class RomanceDao implements BooksService<Romance> {
         return repository.findById(rid).map(romance -> {
             myLog.log4j.info("RID : "+rid+" exits!!");
             return romance;
-        }).orElseThrow(()-> {
-            throw new RuntimeException("RID : "+rid+" didn't exit!!");
-        });
+        }).orElseThrow(()-> new RuntimeException("RID : " + rid + " didn't exit!!"));
     }
 
     @Override
